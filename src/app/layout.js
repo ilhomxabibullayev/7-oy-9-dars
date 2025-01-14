@@ -47,7 +47,7 @@ export default function RootLayout({ children }) {
                 <Link className="nav__link" href='/product'>Product</Link>
               </li>
               <li className="nav__item">
-                <Link className="nav__link" href='/contact-us'>Contact us</Link>
+                <Link className="nav__link" href='/contact'>Contact us</Link>
               </li>
             </ul>
             <div className="nav__icon">

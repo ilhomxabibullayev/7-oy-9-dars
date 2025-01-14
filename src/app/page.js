@@ -9,7 +9,7 @@ import Shop3 from '../../public/image/shop3.png';
 import Shop4 from '../../public/image/shop4.png';
 import Shop5 from '../../public/image/shop5.png';
 import Shop6 from '../../public/image/shop6.png';
-import Card from "@/components/Catd";
+import Card from "@/components/Card";
 import Arrow from '../../public/icon/arrow.svg';
 import Latest from '../../public/image/latest.png'
 import Latest2 from '../../public/image/latest2.png';
@@ -24,10 +24,26 @@ import Newsfeed6 from '../../public/image/newsfeed6.png';
 
 export default async function Home() {
 
-  const PRODUCTS_URL = 'http://localhost:5000/products';
+  let products = [];
+  let isLoading = true;
 
-  const products = (await (await fetch(PRODUCTS_URL)).json()).data || [];
-  console.log(products);
+  try {
+    const response = await fetch(PRODUCTS_URL);
+    const data = await response.json();
+    products = data.data || [];
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  } finally {
+    isLoading = false;
+  }
+
+  if (isLoading) {
+    return (
+      <div className="loading">
+        <p>Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <>
