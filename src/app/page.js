@@ -25,25 +25,18 @@ import Newsfeed6 from '../../public/image/newsfeed6.png';
 export default async function Home() {
 
   let products = [];
-  let isLoading = true;
 
   try {
-    const response = await fetch(PRODUCTS_URL);
+    const response = await fetch("http://localhost:5000/products")
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve("fwrffw")
+      }, 5000)
+    })
     const data = await response.json();
     products = data.data || [];
   } catch (error) {
-    console.error("Error fetching products:", error);
-  } finally {
-    isLoading = false;
-  }
-
-  if (isLoading) {
-    return (
-      <div className="loading">
-        <p>Loading...</p>
-      </div>
-    );
-  }
+  } 
 
   return (
     <>
