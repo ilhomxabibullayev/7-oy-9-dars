@@ -36,7 +36,7 @@ export default async function Home() {
     const data = await response.json();
     products = data.data || [];
   } catch (error) {
-  } 
+  }
 
   return (
     <>
